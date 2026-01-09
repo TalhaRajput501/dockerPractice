@@ -1,0 +1,21 @@
+FROM node AS build
+
+WORKDIR /todo-app-frontend 
+
+COPY package*.json ./
+
+RUN npm install --production
+
+COPY . ./
+
+RUN npm run build
+EXPOSE 80
+
+FROM nginx:alpine
+
+COPY --from=build /todo-app-frontend/dist /usr/share/nginx/html
+
+
+
+# CMD [ "npm", "run", "dev" ]
+

@@ -1,0 +1,13 @@
+FROM node
+
+WORKDIR /todo-app-backend 
+
+COPY package*.json ./
+
+RUN npm install --production
+
+COPY . ./
+
+
+
+CMD [ "node", "server.js" ]
