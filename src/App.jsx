@@ -10,20 +10,21 @@ function App() {
 
 
   useEffect(() => {
-      async function getTodos(){
+    console.log(import.meta.env.VITE_API_URL)
+    async function getTodos() {
       try {
-        const res = await fetch(`http://localhost/api/todo`, {
+        const res = await fetch(`/api/todo`, {
           method: "GET",
           headers: { "Content-Type": "application/json" }
         });
         const data = await res.json();
-        setTodos(data) 
+        setTodos(data)
       } catch (err) {
         console.error("Error updating todo:", err);
       }
     }
     getTodos()
-  }, [todos])
+  }, [])
 
 
   return (

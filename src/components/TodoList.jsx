@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 
-function TodoList({ todo }) {
+function TodoList({ todo,  }) {
   const [editAble, setEditable] = useState(false);
   const [todoMsg, setTodoMsg] = useState(todo.message);
   const [loading, setLoading] = useState(false);
-
+ 
   // Toggle status status
   const togglestatus = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`http://localhost/api/todo/${todo._id}`, {
+      const res = await fetch(`/api/todo/${todo._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: !todo.status }),
@@ -27,7 +27,7 @@ function TodoList({ todo }) {
     if (!todoMsg.trim()) return;
     try {
       setLoading(true);
-      const res = await fetch(`http://localhost/api/todo/${todo._id}`, {
+      const res = await fetch(`/api/todo/${todo._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: todoMsg }),
@@ -45,7 +45,7 @@ function TodoList({ todo }) {
   const deleteTodo = async () => {
     try {
       setLoading(true);
-      await fetch(`http://localhost/api/todo/${todo._id}`, {
+      await fetch(`/api/todo/${todo._id}`, {
         method: "DELETE",
       }); 
     } catch (err) {
